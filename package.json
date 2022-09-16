@@ -1,0 +1,23 @@
+{
+  "name": "chess-move-validator",
+  "version": "1.0.0",
+  "description": "Take the name of a chess piece, its position on a board and an intended destination. The function should return true if the piece can move to the destination, or false if it can't.",
+  "main": "index.js",
+  
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/musayuksel/Chess-move-validator.git"
+  },
+  "author": "Musa Yuksel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/musayuksel/Chess-move-validator/issues"
+  },
+  "homepage": "https://github.com/musayuksel/Chess-move-validator#readme",
+  "devDependencies": {
+    "jest": "^29.0.3"
+  }
+}

@@ -1,7 +1,10 @@
-const canMove = require('./index');
+const { canMove, findCurrentPositionIndex } = require('./index');
 
-describe('Test', () => {
-  it('should export a function', () => {
-    expect(canMove('Rook', 'A8', 'D8')).toBe('test');
+describe('findCurrentPositionIndex function :', () => {
+  it('should return the current position index', () => {
+    expect(findCurrentPositionIndex('A1')).toEqual([7, 0]);
+  });
+  it('should return the current position index', () => {
+    expect(findCurrentPositionIndex('F5')).toEqual([3, 5]);
   });
 });

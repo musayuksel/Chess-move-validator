@@ -1,4 +1,9 @@
-const { canMove, findCurrentPositionIndex, movesOfRock } = require('./index');
+const {
+  canMove,
+  findCurrentPositionIndex,
+  movesOfRock,
+  movesOfBishop,
+} = require('./index');
 
 describe('findCurrentPositionIndex function :', () => {
   it('should return the current position index', () => {
@@ -45,6 +50,38 @@ describe('movesOfRock function :', () => {
       'F8',
       'G8',
       'H8',
+    ]);
+  });
+});
+
+describe('movesOfBishop function :', () => {
+  it('should return all possible moves of the Bishop', () => {
+    expect(movesOfBishop('D5')).toEqual([
+      'C6',
+      'B7',
+      'A8',
+      'E6',
+      'F7',
+      'G8',
+      'C4',
+      'B3',
+      'A2',
+      'E4',
+      'F3',
+      'G2',
+      'H1',
+    ]);
+  });
+
+  it('should return all possible moves of the Bishop', () => {
+    expect(movesOfBishop('A8')).toEqual([
+      'B7',
+      'C6',
+      'D5',
+      'E4',
+      'F3',
+      'G2',
+      'H1',
     ]);
   });
 });

@@ -33,8 +33,45 @@ const movesOfRock = (currentPosition) => {
   return moves;
 };
 
+const movesOfBishop = (currentPosition) => {
+  const [rowIndex, columnIndex] = findCurrentPositionIndex(currentPosition);
+  const moves = [];
+  for (let i = rowIndex - 1, j = columnIndex - 1; i >= 0 && j >= 0; i--, j--) {
+    moves.push(chessBoard[i][j]); //up left
+  }
+  for (
+    let i = rowIndex - 1, j = columnIndex + 1;
+    i >= 0 && j < chessBoard[rowIndex].length;
+    i--, j++
+  ) {
+    moves.push(chessBoard[i][j]); //up right
+  }
+  for (
+    let i = rowIndex + 1, j = columnIndex - 1;
+    i < chessBoard.length && j >= 0;
+    i++, j--
+  ) {
+    moves.push(chessBoard[i][j]); //down left
+  }
+  for (
+    let i = rowIndex + 1, j = columnIndex + 1;
+    i < chessBoard.length && j < chessBoard[rowIndex].length;
+    i++, j++
+  ) {
+    moves.push(chessBoard[i][j]); //down right
+  }
+  return moves;
+};
+
+console.log(movesOfBishop('D5'));
+
 function canMove(nameOfPiece, currentPosition, intendedDestination) {
   console.log('first');
   return 'test';
 }
-module.exports = { canMove, findCurrentPositionIndex, movesOfRock };
+module.exports = {
+  canMove,
+  findCurrentPositionIndex,
+  movesOfRock,
+  movesOfBishop,
+};

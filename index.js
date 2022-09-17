@@ -1,4 +1,4 @@
-const chessBoard = [
+const BOARD = [
   ['A8', 'B8', 'C8', 'D8', 'E8', 'F8', 'G8', 'H8'],
   ['A7', 'B7', 'C7', 'D7', 'E7', 'F7', 'G7', 'H7'],
   ['A6', 'B6', 'C6', 'D6', 'E6', 'F6', 'G6', 'H6'],
@@ -15,55 +15,64 @@ const findCurrentPositionIndex = (currentPosition) => {
   return [rowIndex, columnIndex];
 };
 
+const oneUp = (rowIndex, colIndex) => BOARD[rowIndex - 1][colIndex];
+
+const oneDown = (rowIndex, colIndex) => BOARD[rowIndex + 1][colIndex];
+
+const oneLeft = (rowIndex, colIndex) => BOARD[rowIndex][colIndex - 1];
+
+const oneRight = (rowIndex, colIndex) => BOARD[rowIndex][colIndex + 1];
+
 const movesOfRock = (currentPosition) => {
   const [rowIndex, columnIndex] = findCurrentPositionIndex(currentPosition);
   const moves = [];
-  for (let i = rowIndex - 1; i >= 0; i--) {
-    moves.push(chessBoard[i][columnIndex]); //up
+  for (let i = rowIndex; i > 0; i--) {
+    moves.push(oneUp(i, columnIndex)); //up
   }
-  for (let i = rowIndex + 1; i < chessBoard.length; i++) {
-    moves.push(chessBoard[i][columnIndex]); //down
+  for (let i = rowIndex; i < 7; i++) {
+    moves.push(oneDown(i, columnIndex)); //down
   }
-  for (let i = columnIndex - 1; i >= 0; i--) {
-    moves.push(chessBoard[rowIndex][i]); //left
+  for (let i = columnIndex; i > 0; i--) {
+    moves.push(oneLeft(rowIndex, i)); //left
   }
-  for (let i = columnIndex + 1; i < chessBoard[rowIndex].length; i++) {
-    moves.push(chessBoard[rowIndex][i]); //right
+  for (let i = columnIndex; i < 7; i++) {
+    moves.push(oneRight(rowIndex, i)); //right
   }
   return moves;
 };
+console.log(movesOfRock('D5'), '<<<<<<<<<<<<');
 
 const movesOfBishop = (currentPosition) => {
   const [rowIndex, columnIndex] = findCurrentPositionIndex(currentPosition);
   const moves = [];
   for (let i = rowIndex - 1, j = columnIndex - 1; i >= 0 && j >= 0; i--, j--) {
-    moves.push(chessBoard[i][j]); //up left
+    moves.push(BOARD_M[i][j]); //up left
   }
   for (
     let i = rowIndex - 1, j = columnIndex + 1;
-    i >= 0 && j < chessBoard[rowIndex].length;
+    i >= 0 && j < BOARD_[rowIndex].length;
     i--, j++
   ) {
-    moves.push(chessBoard[i][j]); //up right
+    moves.push(BOARD_M[i][j]); //up right
   }
   for (
     let i = rowIndex + 1, j = columnIndex - 1;
-    i < chessBoard.length && j >= 0;
+    i < BOARD_.length && j >= 0;
     i++, j--
   ) {
-    moves.push(chessBoard[i][j]); //down left
+    moves.push(BOARD_M[i][j]); //down left
   }
   for (
     let i = rowIndex + 1, j = columnIndex + 1;
-    i < chessBoard.length && j < chessBoard[rowIndex].length;
+    i < BOARD_.length && j < BOARD_[rowIndex].length;
     i++, j++
   ) {
-    moves.push(chessBoard[i][j]); //down right
+    moves.push(BOARD_M[i][j]); //down right
   }
   return moves;
 };
 
-console.log(movesOfBishop('D5'));
+// console.log(movesOfBishop('D5'));
 
 function canMove(nameOfPiece, currentPosition, intendedDestination) {
   console.log('first');
@@ -72,6 +81,10 @@ function canMove(nameOfPiece, currentPosition, intendedDestination) {
 module.exports = {
   canMove,
   findCurrentPositionIndex,
+  oneUp,
+  oneDown,
+  oneLeft,
+  oneRight,
   movesOfRock,
   movesOfBishop,
 };

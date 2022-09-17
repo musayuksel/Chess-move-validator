@@ -15,8 +15,26 @@ const findCurrentPositionIndex = (currentPosition) => {
   return [rowIndex, columnIndex];
 };
 
+const movesOfRock = (currentPosition) => {
+  const [rowIndex, columnIndex] = findCurrentPositionIndex(currentPosition);
+  const moves = [];
+  for (let i = rowIndex - 1; i >= 0; i--) {
+    moves.push(chessBoard[i][columnIndex]); //up
+  }
+  for (let i = rowIndex + 1; i < chessBoard.length; i++) {
+    moves.push(chessBoard[i][columnIndex]); //down
+  }
+  for (let i = columnIndex - 1; i >= 0; i--) {
+    moves.push(chessBoard[rowIndex][i]); //left
+  }
+  for (let i = columnIndex + 1; i < chessBoard[rowIndex].length; i++) {
+    moves.push(chessBoard[rowIndex][i]); //right
+  }
+  return moves;
+};
+
 function canMove(nameOfPiece, currentPosition, intendedDestination) {
   console.log('first');
   return 'test';
 }
-module.exports = { canMove, findCurrentPositionIndex };
+module.exports = { canMove, findCurrentPositionIndex, movesOfRock };

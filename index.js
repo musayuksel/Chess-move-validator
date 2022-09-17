@@ -67,7 +67,12 @@ const movesOfBishop = (currentPosition) => {
   return moves;
 };
 
-console.log(movesOfBishop('D5'), '<--bishop');
+const movesOfQueen = (currentPosition) => [
+  ...movesOfRock(currentPosition),
+  ...movesOfBishop(currentPosition),
+];
+
+console.log(movesOfQueen('D4'), '<--queen');
 
 function canMove(nameOfPiece, currentPosition, intendedDestination) {
   console.log('first');
@@ -86,4 +91,5 @@ module.exports = {
   oneDownRight,
   movesOfRock,
   movesOfBishop,
+  movesOfQueen,
 };

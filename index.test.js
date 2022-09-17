@@ -5,6 +5,10 @@ const {
   oneDown,
   oneLeft,
   oneRight,
+  oneUpLeft,
+  oneUpRight,
+  oneDownLeft,
+  oneDownRight,
   movesOfRock,
   movesOfBishop,
 } = require('./index');
@@ -46,6 +50,33 @@ describe('oneRight function : ', () => {
   });
 });
 
+describe('oneUpLeft function : ', () => {
+  it('D5 should move to the C6', () => {
+    const [rowIndex, colIndex] = findCurrentPositionIndex('D5');
+    expect(oneUpLeft(rowIndex, colIndex)).toEqual('C6');
+  });
+});
+
+describe('oneUpRight function : ', () => {
+  it('D5 should move to the E6', () => {
+    const [rowIndex, colIndex] = findCurrentPositionIndex('D5');
+    expect(oneUpRight(rowIndex, colIndex)).toEqual('E6');
+  });
+});
+
+describe('oneDownLeft function : ', () => {
+  it('D5 should move to the C4', () => {
+    const [rowIndex, colIndex] = findCurrentPositionIndex('D5');
+    expect(oneDownLeft(rowIndex, colIndex)).toEqual('C4');
+  });
+});
+
+describe('oneDownRight function : ', () => {
+  it('D5 should move to the E4', () => {
+    const [rowIndex, colIndex] = findCurrentPositionIndex('D5');
+    expect(oneDownRight(rowIndex, colIndex)).toEqual('E4');
+  });
+});
 
 describe('movesOfRock function :', () => {
   it('should return all possible moves of the Rock', () => {

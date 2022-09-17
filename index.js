@@ -23,6 +23,14 @@ const oneLeft = (rowIndex, colIndex) => BOARD[rowIndex][colIndex - 1];
 
 const oneRight = (rowIndex, colIndex) => BOARD[rowIndex][colIndex + 1];
 
+const oneUpLeft = (rowIndex, colIndex) => BOARD[rowIndex - 1][colIndex - 1];
+
+const oneUpRight = (rowIndex, colIndex) => BOARD[rowIndex - 1][colIndex + 1];
+
+const oneDownLeft = (rowIndex, colIndex) => BOARD[rowIndex + 1][colIndex - 1];
+
+const oneDownRight = (rowIndex, colIndex) => BOARD[rowIndex + 1][colIndex + 1];
+
 const movesOfRock = (currentPosition) => {
   const [rowIndex, columnIndex] = findCurrentPositionIndex(currentPosition);
   const moves = [];
@@ -40,39 +48,26 @@ const movesOfRock = (currentPosition) => {
   }
   return moves;
 };
-console.log(movesOfRock('D5'), '<<<<<<<<<<<<');
 
 const movesOfBishop = (currentPosition) => {
   const [rowIndex, columnIndex] = findCurrentPositionIndex(currentPosition);
   const moves = [];
-  for (let i = rowIndex - 1, j = columnIndex - 1; i >= 0 && j >= 0; i--, j--) {
-    moves.push(BOARD_M[i][j]); //up left
+  for (let i = rowIndex, j = columnIndex; i > 0 && j > 0; i--, j--) {
+    moves.push(oneUpLeft(i, j)); //up left
   }
-  for (
-    let i = rowIndex - 1, j = columnIndex + 1;
-    i >= 0 && j < BOARD_[rowIndex].length;
-    i--, j++
-  ) {
-    moves.push(BOARD_M[i][j]); //up right
+  for (let i = rowIndex, j = columnIndex; i > 0 && j < 7; i--, j++) {
+    moves.push(oneUpRight(i, j)); //up right
   }
-  for (
-    let i = rowIndex + 1, j = columnIndex - 1;
-    i < BOARD_.length && j >= 0;
-    i++, j--
-  ) {
-    moves.push(BOARD_M[i][j]); //down left
+  for (let i = rowIndex, j = columnIndex; i < 7 && j > 0; i++, j--) {
+    moves.push(oneDownLeft(i, j)); //down left
   }
-  for (
-    let i = rowIndex + 1, j = columnIndex + 1;
-    i < BOARD_.length && j < BOARD_[rowIndex].length;
-    i++, j++
-  ) {
-    moves.push(BOARD_M[i][j]); //down right
+  for (let i = rowIndex, j = columnIndex; i < 7 && j < 7; i++, j++) {
+    moves.push(oneDownRight(i, j)); //down right
   }
   return moves;
 };
 
-// console.log(movesOfBishop('D5'));
+console.log(movesOfBishop('D5'), '<--bishop');
 
 function canMove(nameOfPiece, currentPosition, intendedDestination) {
   console.log('first');
@@ -85,6 +80,10 @@ module.exports = {
   oneDown,
   oneLeft,
   oneRight,
+  oneUpLeft,
+  oneUpRight,
+  oneDownLeft,
+  oneDownRight,
   movesOfRock,
   movesOfBishop,
 };

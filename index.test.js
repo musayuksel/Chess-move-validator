@@ -9,7 +9,7 @@ const {
   oneUpRight,
   oneDownLeft,
   oneDownRight,
-  movesOfRock,
+  movesOfRook,
   movesOfBishop,
   movesOfQueen,
   movesOfKing,
@@ -82,9 +82,9 @@ describe('oneDownRight function : ', () => {
   });
 });
 
-describe('movesOfRock function :', () => {
-  it('should return all possible moves of the Rock', () => {
-    expect(movesOfRock('D5')).toEqual([
+describe('movesOfRook function :', () => {
+  it('should return all possible moves of the Rook', () => {
+    expect(movesOfRook('D5')).toEqual([
       'D6',
       'D7',
       'D8',
@@ -102,8 +102,8 @@ describe('movesOfRock function :', () => {
     ]);
   });
 
-  it('should return all possible moves of the Rock', () => {
-    expect(movesOfRock('A8')).toEqual([
+  it('should return all possible moves of the Rook', () => {
+    expect(movesOfRook('A8')).toEqual([
       'A7',
       'A6',
       'A5',
@@ -232,5 +232,35 @@ describe('movesOfPawn function :', () => {
     expect(callMovesOfPawn).toThrowError(
       new Error('Pawn position is invalid!!!')
     );
+  });
+});
+
+describe('canMove function ----->', () => {
+  it("'Rook', 'A8', 'H8' should return TRUE", () => {
+    expect(canMove('Rook', 'A8', 'H8')).toEqual(true);
+  });
+
+  it("'King', 'D4', 'E5' should return TRUE", () => {
+    expect(canMove('King', 'D4', 'E5')).toEqual(true);
+  });
+
+  it("'Bishop', 'A7', 'G1' should return TRUE", () => {
+    expect(canMove('Bishop', 'A7', 'G1')).toEqual(true);
+  });
+
+  it("'Queen', 'C4', 'D6' should return FALSE", () => {
+    expect(canMove('Queen', 'C4', 'D6')).toEqual(false);
+  });
+
+  it("'Knight', 'C4', 'A3' should return TRUE", () => {
+    expect(canMove('Knight', 'C4', 'A3')).toEqual(true);
+  });
+
+  it("'Pawn', 'A2', 'A3' should return TRUE", () => {
+    expect(canMove('Pawn', 'A2', 'A3')).toEqual(true);
+  });
+
+  it("'Pawn', 'A2', 'A4' should return TRUE", () => {
+    expect(canMove('Pawn', 'A2', 'A4')).toEqual(true);
   });
 });

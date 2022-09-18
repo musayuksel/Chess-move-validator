@@ -31,7 +31,7 @@ const oneDownLeft = (rowIdx, colIdx) => BOARD[rowIdx + 1]?.[colIdx - 1] || '';
 
 const oneDownRight = (rowIdx, colIdx) => BOARD[rowIdx + 1]?.[colIdx + 1] || '';
 
-const movesOfRock = (currentPosition) => {
+const movesOfRook = (currentPosition) => {
   const [rowIndex, columnIndex] = findCurrentPositionIndex(currentPosition);
   const moves = [];
   for (let i = rowIndex; i > 0; i--) {
@@ -68,7 +68,7 @@ const movesOfBishop = (currentPosition) => {
 };
 
 const movesOfQueen = (currentPosition) => [
-  ...movesOfRock(currentPosition),
+  ...movesOfRook(currentPosition),
   ...movesOfBishop(currentPosition),
 ];
 
@@ -114,12 +114,27 @@ const movesOfPawn = (currentPosition) => {
   return moves.filter((move) => move);
 };
 
-console.log(movesOfPawn('A2'), '<--movesOfPawn');
-
 function canMove(nameOfPiece, currentPosition, intendedDestination) {
-  console.log('first');
-  return 'test';
+  const pieceMoves = {
+    Rook: movesOfRook,
+    Bishop: movesOfBishop,
+    Queen: movesOfQueen,
+    King: movesOfKing,
+    Knight: movesOfKnight,
+    Pawn: movesOfPawn,
+  };
+  const possibleMoves = pieceMoves[nameOfPiece](currentPosition);
+  return possibleMoves.includes(intendedDestination);
 }
+
+console.log(canMove('Rook', 'A8', 'H8') , "<--- Rook A8 to H8"); // true
+console.log(canMove('King', 'D4', 'E5'), "<--- King D4 to E5"); // true
+console.log(canMove('Bishop', 'A7', 'G1'), "<--- Bishop A7 to G1"); // true
+console.log(canMove('Queen', 'C4', 'D6'), "<--- Queen C4 to D6"); // false
+console.log(canMove('Knight', 'C4', 'A3'), "<--- Knight C4 to A3"); // true
+console.log(canMove('Pawn', 'A2', 'A3') , "<--- Pawn A2 to A3"); // true
+console.log(canMove('Pawn', 'A2', 'A4') , "<--- Pawn A2 to A4"); // true
+
 module.exports = {
   canMove,
   findCurrentPositionIndex,
@@ -131,7 +146,7 @@ module.exports = {
   oneUpRight,
   oneDownLeft,
   oneDownRight,
-  movesOfRock,
+  movesOfRook,
   movesOfBishop,
   movesOfQueen,
   movesOfKing,

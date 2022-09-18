@@ -14,6 +14,7 @@ const {
   movesOfQueen,
   movesOfKing,
   movesOfKnight,
+  movesOfPawn,
 } = require('./index');
 
 describe('findCurrentPositionIndex function :', () => {
@@ -214,5 +215,22 @@ describe('movesOfKnight function :', () => {
       'F5',
       'F3',
     ]);
+  });
+});
+
+describe('movesOfPawn function :', () => {
+  it('should return all possible moves of the Pawn', () => {
+    expect(movesOfPawn('F2')).toEqual(['F3', 'F4']);
+  });
+
+  it('should return all possible moves of the Pawn', () => {
+    expect(movesOfPawn('E7')).toEqual(['E8']);
+  });
+
+  it('should return an Error if Pawn is row 1', () => {
+    const callMovesOfPawn = () => movesOfPawn('A1');
+    expect(callMovesOfPawn).toThrowError(
+      new Error('Pawn position is invalid!!!')
+    );
   });
 });

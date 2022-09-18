@@ -104,7 +104,17 @@ const movesOfKnight = (currentPosition) => {
   return moves.filter((move) => move);
 };
 
-console.log(movesOfKnight('D4'), '<--movesOfKnight');
+const movesOfPawn = (currentPosition) => {
+  const [rowIndex, columnIndex] = findCurrentPositionIndex(currentPosition);
+  const moves = [];
+  if (rowIndex === 7) throw Error('Pawn position is invalid!!!');
+  moves.push(oneUp(rowIndex, columnIndex)); //up
+  rowIndex === 6 && moves.push(oneUp(rowIndex - 1, columnIndex)); //up 2
+  // delete empty strings
+  return moves.filter((move) => move);
+};
+
+console.log(movesOfPawn('A2'), '<--movesOfPawn');
 
 function canMove(nameOfPiece, currentPosition, intendedDestination) {
   console.log('first');
@@ -126,4 +136,5 @@ module.exports = {
   movesOfQueen,
   movesOfKing,
   movesOfKnight,
+  movesOfPawn,
 };

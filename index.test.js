@@ -227,8 +227,15 @@ describe('movesOfPawn function :', () => {
     expect(movesOfPawn('E7')).toEqual(['E8']);
   });
 
-  it('should return an Error if Pawn is row 1', () => {
-    const callMovesOfPawn = () => movesOfPawn('A1');
+  it('should return an Error if White Pawn position is row 1', () => {
+    const callMovesOfPawn = () => movesOfPawn('A1', 'white');
+    expect(callMovesOfPawn).toThrowError(
+      new Error('Pawn position is invalid!!!')
+    );
+  });
+
+  it('should return an Error if Black Pawn position is row 8', () => {
+    const callMovesOfPawn = () => movesOfPawn('A8', 'black');
     expect(callMovesOfPawn).toThrowError(
       new Error('Pawn position is invalid!!!')
     );

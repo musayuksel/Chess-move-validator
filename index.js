@@ -104,17 +104,31 @@ const movesOfKnight = (currentPosition) => {
   return moves.filter((move) => move);
 };
 
-const movesOfPawn = (currentPosition) => {
+const movesOfPawn = (currentPosition, colour = 'white') => {
   const [rowIndex, columnIndex] = findCurrentPositionIndex(currentPosition);
   const moves = [];
-  if (rowIndex === 7) throw Error('Pawn position is invalid!!!');
-  moves.push(oneUp(rowIndex, columnIndex)); //up
-  rowIndex === 6 && moves.push(oneUp(rowIndex - 1, columnIndex)); //up 2
+  if (
+    (rowIndex === 7 && colour === 'white') ||
+    (rowIndex === 0 && colour === 'black')
+  )
+    throw Error('Pawn position is invalid!!!');
+  if (colour === 'white') {
+    moves.push(oneUp(rowIndex, columnIndex)); //up
+    rowIndex === 6 && moves.push(oneUp(rowIndex - 1, columnIndex)); //up 2
+  } else {
+    moves.push(oneDown(rowIndex, columnIndex)); //down
+    rowIndex === 1 && moves.push(oneDown(rowIndex + 1, columnIndex)); //down 2
+  }
   // delete empty strings
   return moves.filter((move) => move);
 };
 
-function canMove(nameOfPiece, currentPosition, intendedDestination) {
+function canMove(
+  nameOfPiece,
+  currentPosition,
+  intendedDestination,
+  colour = 'white'
+) {
   const pieceMoves = {
     Rook: movesOfRook,
     Bishop: movesOfBishop,
@@ -123,7 +137,7 @@ function canMove(nameOfPiece, currentPosition, intendedDestination) {
     Knight: movesOfKnight,
     Pawn: movesOfPawn,
   };
-  const possibleMoves = pieceMoves[nameOfPiece](currentPosition);
+  const possibleMoves = pieceMoves[nameOfPiece](currentPosition, colour);
   return possibleMoves.includes(intendedDestination);
 }
 
@@ -132,8 +146,12 @@ console.log(canMove('King', 'D4', 'E5'), "<--- King D4 to E5"); // true
 console.log(canMove('Bishop', 'A7', 'G1'), "<--- Bishop A7 to G1"); // true
 console.log(canMove('Queen', 'C4', 'D6'), "<--- Queen C4 to D6"); // false
 console.log(canMove('Knight', 'C4', 'A3'), "<--- Knight C4 to A3"); // true
-console.log(canMove('Pawn', 'A2', 'A3') , "<--- Pawn A2 to A3"); // true
-console.log(canMove('Pawn', 'A2', 'A4') , "<--- Pawn A2 to A4"); // true
+console.log(canMove('Pawn', 'A2', 'A3') , "<---White Pawn A2 to A3"); // true
+console.log(canMove('Pawn', 'A2', 'A4') , "<---White Pawn A2 to A4"); // true
+console.log(canMove('Pawn', 'A2', 'A4','black') , "<--- Black Pawn A2 to A4"); // false
+console.log(canMove('Pawn', 'A7', 'A5','black') , "<--- Black Pawn A7 to A5"); // true
+// console.log(canMove('Pawn', 'A1', 'A4','white') , "<---White Pawn A1 to A4"); // ERROR
+// console.log(canMove('Pawn', 'A8', 'A7','black') , "<--- Black Pawn A8 to A7"); // ERROR
 
 module.exports = {
   canMove,

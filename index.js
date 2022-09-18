@@ -15,21 +15,21 @@ const findCurrentPositionIndex = (currentPosition) => {
   return [rowIndex, columnIndex];
 };
 
-const oneUp = (rowIndex, colIndex) => BOARD[rowIndex - 1][colIndex];
+const oneUp = (rowIndex, colIndex) => BOARD[rowIndex - 1]?.[colIndex] || '';
 
-const oneDown = (rowIndex, colIndex) => BOARD[rowIndex + 1][colIndex];
+const oneDown = (rowIndex, colIndex) => BOARD[rowIndex + 1]?.[colIndex] || '';
 
-const oneLeft = (rowIndex, colIndex) => BOARD[rowIndex][colIndex - 1];
+const oneLeft = (rowIndex, colIndex) => BOARD[rowIndex]?.[colIndex - 1] || '';
 
-const oneRight = (rowIndex, colIndex) => BOARD[rowIndex][colIndex + 1];
+const oneRight = (rowIndex, colIndex) => BOARD[rowIndex]?.[colIndex + 1] || '';
 
-const oneUpLeft = (rowIndex, colIndex) => BOARD[rowIndex - 1][colIndex - 1];
+const oneUpLeft = (rowIdx, colIdx) => BOARD[rowIdx - 1]?.[colIdx - 1] || '';
 
-const oneUpRight = (rowIndex, colIndex) => BOARD[rowIndex - 1][colIndex + 1];
+const oneUpRight = (rowIdx, colIdx) => BOARD[rowIdx - 1]?.[colIdx + 1] || '';
 
-const oneDownLeft = (rowIndex, colIndex) => BOARD[rowIndex + 1][colIndex - 1];
+const oneDownLeft = (rowIdx, colIdx) => BOARD[rowIdx + 1]?.[colIdx - 1] || '';
 
-const oneDownRight = (rowIndex, colIndex) => BOARD[rowIndex + 1][colIndex + 1];
+const oneDownRight = (rowIdx, colIdx) => BOARD[rowIdx + 1]?.[colIdx + 1] || '';
 
 const movesOfRock = (currentPosition) => {
   const [rowIndex, columnIndex] = findCurrentPositionIndex(currentPosition);
@@ -75,24 +75,19 @@ const movesOfQueen = (currentPosition) => [
 const movesOfKing = (currentPosition) => {
   const [rowIndex, columnIndex] = findCurrentPositionIndex(currentPosition);
   const moves = [];
-  if (rowIndex > 0) {
-    moves.push(oneUp(rowIndex, columnIndex)); //up
-    columnIndex > 0 && moves.push(oneUpLeft(rowIndex, columnIndex)); //up left
-    columnIndex < 7 && moves.push(oneUpRight(rowIndex, columnIndex)); //up right
-  }
+  moves.push(oneUp(rowIndex, columnIndex)); //up
+  moves.push(oneUpLeft(rowIndex, columnIndex)); //up left
+  moves.push(oneUpRight(rowIndex, columnIndex)); //up right
 
-  if (rowIndex < 7) {
-    moves.push(oneDown(rowIndex, columnIndex)); //down
-    columnIndex > 0 && moves.push(oneDownLeft(rowIndex, columnIndex)); //down left
-    columnIndex < 7 && moves.push(oneDownRight(rowIndex, columnIndex)); //down right
-  }
+  moves.push(oneDown(rowIndex, columnIndex)); //down
+  moves.push(oneDownLeft(rowIndex, columnIndex)); //down left
+  moves.push(oneDownRight(rowIndex, columnIndex)); //down right
 
-  columnIndex > 0 && moves.push(oneLeft(rowIndex, columnIndex)); //left
-  columnIndex < 7 && moves.push(oneRight(rowIndex, columnIndex)); //right
-
-  return moves;
+  moves.push(oneLeft(rowIndex, columnIndex)); //left
+  moves.push(oneRight(rowIndex, columnIndex)); //right
+  // delete empty strings
+  return moves.filter((move) => move);
 };
-console.log(movesOfKing('F5'), '<--king');
 
 function canMove(nameOfPiece, currentPosition, intendedDestination) {
   console.log('first');

@@ -72,7 +72,27 @@ const movesOfQueen = (currentPosition) => [
   ...movesOfBishop(currentPosition),
 ];
 
-console.log(movesOfQueen('D4'), '<--queen');
+const movesOfKing = (currentPosition) => {
+  const [rowIndex, columnIndex] = findCurrentPositionIndex(currentPosition);
+  const moves = [];
+  if (rowIndex > 0) {
+    moves.push(oneUp(rowIndex, columnIndex)); //up
+    columnIndex > 0 && moves.push(oneUpLeft(rowIndex, columnIndex)); //up left
+    columnIndex < 7 && moves.push(oneUpRight(rowIndex, columnIndex)); //up right
+  }
+
+  if (rowIndex < 7) {
+    moves.push(oneDown(rowIndex, columnIndex)); //down
+    columnIndex > 0 && moves.push(oneDownLeft(rowIndex, columnIndex)); //down left
+    columnIndex < 7 && moves.push(oneDownRight(rowIndex, columnIndex)); //down right
+  }
+
+  columnIndex > 0 && moves.push(oneLeft(rowIndex, columnIndex)); //left
+  columnIndex < 7 && moves.push(oneRight(rowIndex, columnIndex)); //right
+
+  return moves;
+};
+console.log(movesOfKing('F5'), '<--king');
 
 function canMove(nameOfPiece, currentPosition, intendedDestination) {
   console.log('first');
@@ -92,4 +112,5 @@ module.exports = {
   movesOfRock,
   movesOfBishop,
   movesOfQueen,
+  movesOfKing,
 };

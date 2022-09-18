@@ -12,6 +12,7 @@ const {
   movesOfRock,
   movesOfBishop,
   movesOfQueen,
+  movesOfKing,
 } = require('./index');
 
 describe('findCurrentPositionIndex function :', () => {
@@ -181,6 +182,21 @@ describe('movesOfQueen function :', () => {
       'E3',
       'F2',
       'G1',
+    ]);
+  });
+});
+
+describe('movesOfKing function :', () => {
+  it('should return all possible moves of the King', () => {
+    expect(movesOfKing('F5')).toEqual([
+      'F6',
+      'E6',
+      'G6',
+      'F4',
+      'E4',
+      'G4',
+      'E5',
+      'G5',
     ]);
   });
 });

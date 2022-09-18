@@ -36,7 +36,7 @@ yarn test
 
 ## To Run the function
 ```
-node sudoku.js
+node index.js
 ```
 
 ## Good luck :)

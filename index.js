@@ -89,6 +89,23 @@ const movesOfKing = (currentPosition) => {
   return moves.filter((move) => move);
 };
 
+const movesOfKnight = (currentPosition) => {
+  const [rowIndex, columnIndex] = findCurrentPositionIndex(currentPosition);
+  const moves = [];
+  moves.push(oneUpLeft(rowIndex - 1, columnIndex)); //2-up left
+  moves.push(oneUpRight(rowIndex - 1, columnIndex)); //2-up right
+  moves.push(oneDownLeft(rowIndex + 1, columnIndex)); //2-down left
+  moves.push(oneDownRight(rowIndex + 1, columnIndex)); //2-down right
+  moves.push(oneUpLeft(rowIndex, columnIndex - 1)); //up 2-left
+  moves.push(oneDownLeft(rowIndex, columnIndex - 1)); //down 2-left
+  moves.push(oneUpRight(rowIndex, columnIndex + 1)); //up 2-right
+  moves.push(oneDownRight(rowIndex, columnIndex + 1)); //1down 2-right
+  //   delete empty strings
+  return moves.filter((move) => move);
+};
+
+console.log(movesOfKnight('D4'), '<--movesOfKnight');
+
 function canMove(nameOfPiece, currentPosition, intendedDestination) {
   console.log('first');
   return 'test';
@@ -108,4 +125,5 @@ module.exports = {
   movesOfBishop,
   movesOfQueen,
   movesOfKing,
+  movesOfKnight,
 };

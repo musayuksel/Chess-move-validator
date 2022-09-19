@@ -15,9 +15,16 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  width: 100%;
+  font-size: 12px;
   height: 100%;
+  width: 100%;
   padding: 3rem 0;
+}
+.piece-container article{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .piece {
   cursor: pointer;

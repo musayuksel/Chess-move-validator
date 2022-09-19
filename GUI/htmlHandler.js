@@ -94,13 +94,10 @@ function drawBoard() {
     eachSquare.id = `${row}`;
     eachSquare.addEventListener('click', (e) => {
       const clickedSquare = e.target;
-      console.log({ pieceMoves, selectedPiece, selectedColour });
-      // const possibleMoves = movesOfRook(e.target.id, 'white');
       const possibleMoves = pieceMoves[selectedPiece](
         e.target.id,
         selectedColour
       );
-      console.log(possibleMoves);
       // DELETE PREVIOUS MOVES
       const oldChoice = document.getElementsByClassName('can-move');
       const oldSelected = document.getElementsByClassName('selected');

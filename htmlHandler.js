@@ -6,7 +6,7 @@ import {
   movesOfKnight,
   movesOfPawn,
   BOARD,
-} from '../index.js';
+} from './index.js';
 
 const board = document.getElementById('board');
 const king = document.getElementById('king');

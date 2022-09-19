@@ -1,0 +1,37 @@
+.chess-board {
+    display: grid;
+    grid-template-columns: repeat(8, 50px);
+    grid-template-rows: repeat(8, 50px);
+    justify-content: center;
+    text-align: center;
+    line-height: 50px;
+}
+
+.piece {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.square {
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.square.black {
+    background-color: rgb(169, 116, 116);
+}
+
+.square.white {
+    background-color: rgb(243, 221, 221);
+}
+
+.square.selected {
+    background-color: rgb(212, 118, 246);
+}
+
+.square.can-move {
+    background-color: rgb(124, 255, 124);
+}

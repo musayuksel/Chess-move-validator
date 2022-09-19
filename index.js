@@ -141,19 +141,19 @@ function canMove(
   return possibleMoves.includes(intendedDestination);
 }
 
-console.log(canMove('Rook', 'A8', 'H8') , "<--- Rook A8 to H8"); // true
-console.log(canMove('King', 'D4', 'E5'), "<--- King D4 to E5"); // true
-console.log(canMove('Bishop', 'A7', 'G1'), "<--- Bishop A7 to G1"); // true
-console.log(canMove('Queen', 'C4', 'D6'), "<--- Queen C4 to D6"); // false
-console.log(canMove('Knight', 'C4', 'A3'), "<--- Knight C4 to A3"); // true
-console.log(canMove('Pawn', 'A2', 'A3') , "<---White Pawn A2 to A3"); // true
-console.log(canMove('Pawn', 'A2', 'A4') , "<---White Pawn A2 to A4"); // true
-console.log(canMove('Pawn', 'A2', 'A4','black') , "<--- Black Pawn A2 to A4"); // false
-console.log(canMove('Pawn', 'A7', 'A5','black') , "<--- Black Pawn A7 to A5"); // true
+console.log(canMove('Rook', 'A8', ''), '<--- Rook A8 to H8'); // true
+console.log(canMove('King', 'D4', 'E5'), '<--- King D4 to E5'); // true
+console.log(canMove('Bishop', 'A7', 'G1'), '<--- Bishop A7 to G1'); // true
+console.log(canMove('Queen', 'C4', 'D6'), '<--- Queen C4 to D6'); // false
+console.log(canMove('Knight', 'C4', 'A3'), '<--- Knight C4 to A3'); // true
+console.log(canMove('Pawn', 'A2', 'A3'), '<---White Pawn A2 to A3'); // true
+console.log(canMove('Pawn', 'A2', 'A4'), '<---White Pawn A2 to A4'); // true
+console.log(canMove('Pawn', 'A2', 'A4', 'black'), '<--- Black Pawn A2 to A4'); // false
+console.log(canMove('Pawn', 'A7', 'A5', 'black'), '<--- Black Pawn A7 to A5'); // true
 // console.log(canMove('Pawn', 'A1', 'A4','white') , "<---White Pawn A1 to A4"); // ERROR
 // console.log(canMove('Pawn', 'A8', 'A7','black') , "<--- Black Pawn A8 to A7"); // ERROR
 
-module.exports = {
+export {
   canMove,
   findCurrentPositionIndex,
   oneUp,
@@ -170,4 +170,5 @@ module.exports = {
   movesOfKing,
   movesOfKnight,
   movesOfPawn,
+  BOARD,
 };

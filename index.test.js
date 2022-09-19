@@ -1,4 +1,4 @@
-const {
+import {
   canMove,
   findCurrentPositionIndex,
   oneUp,
@@ -15,7 +15,7 @@ const {
   movesOfKing,
   movesOfKnight,
   movesOfPawn,
-} = require('./index');
+} from './index';
 
 describe('findCurrentPositionIndex function :', () => {
   it('should return the current position index', () => {

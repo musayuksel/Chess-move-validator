@@ -1,4 +1,4 @@
-# Live demo => [here...](https://chess-move-validate.netlify.app/)
+# Live demo => [here...](https://chess-move-validate.netlify.app/) :star: :star: :star:
 
 # Chess-move-validator
 

@@ -23,7 +23,7 @@ The task this week is to create a function which takes the name of a chess piece
 canMove("Rook", "A8", "D8") //  true,
 canMove("Queen", "C4", "D6") //  false.
 ```
-
+# Live demo => [Click here...](https://chess-move-validate.netlify.app/)
 ## Install 
 ```
 yarn

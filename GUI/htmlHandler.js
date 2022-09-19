@@ -25,8 +25,6 @@ const pieceMoves = {
   Knight: movesOfKnight,
   Pawn: movesOfPawn,
 };
-let selectedPiece = null;
-let selectedColour = 'white';
 // DELETE OLD SELECTED PIECE
 const deleteOldSelectedPiece = () => {
   const oldSelectedPieces = document.getElementsByClassName('selected-piece');
@@ -38,50 +36,42 @@ const deleteOldSelectedPiece = () => {
 // SELECT PIECE
 whitePawn.addEventListener('click', () => {
   deleteOldSelectedPiece();
-  selectedPiece = 'Pawn';
   whitePawn.classList.toggle('selected-piece');
-  drawBoard();
+  drawBoard('Pawn', 'white');
 });
 blackPawn.addEventListener('click', () => {
   deleteOldSelectedPiece();
-  selectedPiece = 'Pawn';
-  selectedColour = 'black';
   blackPawn.classList.toggle('selected-piece');
-  drawBoard();
+  drawBoard('Pawn', 'black');
 });
 king.addEventListener('click', () => {
   deleteOldSelectedPiece();
-  selectedPiece = 'King';
   king.classList.toggle('selected-piece');
-  drawBoard();
+  drawBoard('King');
 });
 queen.addEventListener('click', () => {
   deleteOldSelectedPiece();
-  selectedPiece = 'Queen';
   queen.classList.toggle('selected-piece');
-  drawBoard();
+  drawBoard('Queen');
 });
 rook.addEventListener('click', () => {
   deleteOldSelectedPiece();
-  selectedPiece = 'Rook';
   rook.classList.toggle('selected-piece');
-  drawBoard();
+  drawBoard('Rook');
 });
 bishop.addEventListener('click', () => {
   deleteOldSelectedPiece();
-  selectedPiece = 'Bishop';
   bishop.classList.toggle('selected-piece');
-  drawBoard();
+  drawBoard('Bishop');
 });
 knight.addEventListener('click', () => {
   deleteOldSelectedPiece();
-  selectedPiece = 'Knight';
   knight.classList.toggle('selected-piece');
-  drawBoard();
+  drawBoard('Knight');
 });
 
 // DRAW BOARD
-function drawBoard() {
+function drawBoard(selectedPiece, selectedColour = 'white') {
   board.innerHTML = '';
   const fragment = document.createDocumentFragment();
   BOARD.flat(1).forEach((row, rowIndex) => {
